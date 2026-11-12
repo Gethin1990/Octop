@@ -1,0 +1,7 @@
+id: scrum-board
+version: 0.1.0
+name: Scrum Board
+description: Agent-facing board tools — pull the task spec, heartbeat the lease, submit evidence, or block
+icon: "📋"
+kind: tool
+entry: main.py

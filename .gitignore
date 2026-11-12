@@ -124,3 +124,6 @@ scripts/lh_image_install_octop_tencentos.sh
 .tmp-mfa/
 .tmp-mfa-e2e/
 
+# Local agent workspace data (work logs, caches, project state)
+.workbuddy/
+

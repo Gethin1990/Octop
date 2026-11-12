@@ -1,0 +1,38 @@
+{
+  "_comment": "Scope gate. Roles and per-role denials are read from the board (single source of truth) for the role, and from this file for the policy. Tool names follow deepagents' builtin filesystem middleware: ls/read_file/write_file/edit_file/delete/glob/grep/execute. deny_tools_by_role is applied as-is; read_only_roles only changes the wording of the refusal. The SM must keep `execute`: DoD verification means running commands and calling the board RPC, and blocking it turns every review into tooling_blocked.",
+  "read_only_roles": ["po", "reviewer"],
+  "deny_tools_by_role": {
+    "po": [
+      "write_file", "edit_file", "delete", "execute", "task"
+    ],
+    "sm": [
+      "write_file", "edit_file", "delete"
+    ],
+    "reviewer": [
+      "write_file", "edit_file", "delete", "execute"
+    ]
+  },
+  "arg_pattern_tools": [
+    "execute", "write_file", "edit_file", "delete"
+  ],
+  "path_guard_tools": [
+    "read_file", "write_file", "edit_file", "delete", "execute", "ls", "glob", "grep"
+  ],
+  "deny_arg_patterns": [
+    "git\\s+commit",
+    "git\\s+push",
+    "git\\s+rebase",
+    "git\\s+reset\\s+--hard",
+    "--no-verify",
+    "--force\\b",
+    "rm\\s+-rf\\s+/"
+  ],
+  "protected_paths": [
+    "/.git/",
+    "/.ssh/",
+    "/.octop/secrets",
+    "/.octop/config.json"
+  ],
+  "role_cache_ttl_s": 60,
+  "role_cache_stale_s": 900
+}

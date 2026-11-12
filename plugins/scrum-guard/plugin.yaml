@@ -1,0 +1,7 @@
+id: scrum-guard
+version: 0.1.0
+name: Scrum Guard
+description: Scope gate — refuses commits/pushes and write tools for read-only roles, before the call runs
+icon: "🛡️"
+kind: hook
+entry: main.py
